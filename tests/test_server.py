@@ -23,17 +23,16 @@ def index():
     <html>
         <head>
             <title>Test server</title>
-            <meta name="keywords" content="test,server,pywsinfo"/>
-            <meta name="description" content="server for testing pywsinfo"
+            <meta name="keywords" content="test,server,sitemap"/>
+            <meta name="description" content="server for testing sitemap-parser"
         </head>
-        <body>pywsinfo test server</body>
+        <body>sitemap-parser test server</body>
     </html>
     '''
 
 @bottle.get('/favicon.ico')
 def get_robotstxt():
     return bottle.static_file('favicon.ico', root=STATIC_FILES_DIR)
-
 
 @bottle.get('/robots.txt')
 def get_robotstxt():
@@ -68,13 +67,13 @@ def get_sitemap_xml_gz():
     return bottle.static_file('sitemap_index.xml', root=STATIC_FILES_DIR, mimetype="application/xml")
 
 # Process to run
-class PywsinfoTestServer(pyservice.Process):
+class SitemapParserTestServer(pyservice.Process):
 
     pidfile = os.path.join(os.getcwd(), 'tests/run/test_server.pid')
     logfile = os.path.join(os.getcwd(), 'tests/log/test_server.log')
 
     def __init__(self):
-        super(PywsinfoTestServer, self).__init__()
+        super(SitemapParserTestServer, self).__init__()
         
         from BaseHTTPServer import BaseHTTPRequestHandler
         BaseHTTPRequestHandler.log_message = log_message
@@ -87,6 +86,7 @@ class PywsinfoTestServer(pyservice.Process):
 if __name__ == '__main__':
 
     if len(sys.argv) == 2 and sys.argv[1] in 'start stop restart status'.split():
-        pyservice.service('test_server.PywsinfoTestServer', sys.argv[1])
+        pyservice.service('test_server.SitemapParserTestServer', sys.argv[1])
     else:
-        print 'usage: PywsinfoTestServer <start,stop,restart,status>'
+        print 'usage: SitemapParserTestServer <start,stop,restart,status>'
+        
