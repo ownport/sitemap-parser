@@ -1,0 +1,2 @@
+Sitemap: http://localhost:8080/sitemap.xml
+Sitemap: http://localhost:8080/sitemap.xml.gz
