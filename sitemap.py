@@ -141,12 +141,12 @@ class SitemapParser(object):
 if __name__ == '__main__':
     
     import argparse
-    parser = argparse.ArgumentParser(description='sitemap-parser')
-    parser.add_argument('-u', '--url', help='sitemap url')
-    parser.add_argument('-p', '--path', help='path to sitemap file')
-    parser.add_argument('-d', '--debug', action='store_true', help='activate debug')
+    argparser = argparse.ArgumentParser(description='sitemap-parser')
+    argparser.add_argument('-u', '--url', help='sitemap url')
+    argparser.add_argument('-p', '--path', help='path to sitemap file')
+    argparser.add_argument('-d', '--debug', action='store_true', help='activate debug')
     
-    args = parser.parse_args()
+    args = argparser.parse_args()
     
     parser = SitemapParser(debug=args.debug)
     if args.url:
@@ -156,6 +156,6 @@ if __name__ == '__main__':
         for url in parser.parse_file(args.path):
             print url
     else:
-        parser.print_help()
+        argparser.print_help()
 
 
